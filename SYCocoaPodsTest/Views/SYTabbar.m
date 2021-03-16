@@ -8,7 +8,7 @@
 
 #import "SYTabbar.h"
 #import "SYTabbarBtn.h"
-//#import "UIButton+WebCache.h"
+#import "UIButton+WebCache.h"
 #import "UIColor+SYAdd.h"
 #import "SYTabbarItemModel.h"
 
@@ -75,8 +75,8 @@
     
     if ([normal hasPrefix:@"http"])
     {
-//        [btn sd_setImageWithURL:[NSURL URLWithString:normal] forState:UIControlStateNormal placeholderImage:nil];
-//        [btn sd_setImageWithURL:[NSURL URLWithString:selected] forState:UIControlStateSelected placeholderImage:nil];
+        [btn sd_setImageWithURL:[NSURL URLWithString:normal] forState:UIControlStateNormal placeholderImage:nil];
+        [btn sd_setImageWithURL:[NSURL URLWithString:selected] forState:UIControlStateSelected placeholderImage:nil];
     }
     else
     {
@@ -126,28 +126,28 @@
         [btn setTitle:model.title forState:UIControlStateNormal];
         [btn setTitle:model.title forState:UIControlStateSelected];
         
-//        if (version >= 13.0)
-//        {
-//            [btn sd_setImageWithURL:[NSURL URLWithString:model.normalURL] forState:UIControlStateNormal completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
-//                if (image)
-//                {
-//                    image = [UIImage imageWithCGImage:image.CGImage scale:2 orientation:UIImageOrientationUp];
-//                    [btn setImage:[image imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] forState:UIControlStateNormal];
-//                }
-//            }];
-//            [btn sd_setImageWithURL:[NSURL URLWithString:model.selectURL] forState:UIControlStateSelected completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
-//                if (image)
-//                {
-//                    image = [UIImage imageWithCGImage:image.CGImage scale:2 orientation:UIImageOrientationUp];
-//                    [btn setImage:[image imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] forState:UIControlStateSelected];
-//                }
-//            }];
-//        }
-//        else
-//        {
-//            [btn sd_setImageWithURL:[NSURL URLWithString:model.normalURL] forState:UIControlStateNormal placeholderImage:nil];
-//            [btn sd_setImageWithURL:[NSURL URLWithString:model.selectURL] forState:UIControlStateSelected placeholderImage:nil];
-//        }
+        if (version >= 13.0)
+        {
+            [btn sd_setImageWithURL:[NSURL URLWithString:model.normalURL] forState:UIControlStateNormal completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+                if (image)
+                {
+                    image = [UIImage imageWithCGImage:image.CGImage scale:2 orientation:UIImageOrientationUp];
+                    [btn setImage:[image imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] forState:UIControlStateNormal];
+                }
+            }];
+            [btn sd_setImageWithURL:[NSURL URLWithString:model.selectURL] forState:UIControlStateSelected completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+                if (image)
+                {
+                    image = [UIImage imageWithCGImage:image.CGImage scale:2 orientation:UIImageOrientationUp];
+                    [btn setImage:[image imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] forState:UIControlStateSelected];
+                }
+            }];
+        }
+        else
+        {
+            [btn sd_setImageWithURL:[NSURL URLWithString:model.normalURL] forState:UIControlStateNormal placeholderImage:nil];
+            [btn sd_setImageWithURL:[NSURL URLWithString:model.selectURL] forState:UIControlStateSelected placeholderImage:nil];
+        }
 
         [btn setTitleColor:[UIColor colorWithHexString:model.normalColor] forState:UIControlStateNormal]; // 普通状态文字颜色
         [btn setTitleColor:[UIColor colorWithHexString:model.selectColor] forState:UIControlStateSelected]; // 选中状态文字颜色
